@@ -1,3 +1,13 @@
 <resources>
-
+    <string name="app_name">Notebook</string>
+    <string name="Note_1">Заметка 1</string>
+    <string name="note1">Hello World</string>
+    <string name="note2">Gde pokakat ?</string>
+    <string name="note3">Gde bigmak ?</string>
+    <string name="noteName1">Заметка 1</string>
+    <string name="noteName2">Заметка 2</string>
+    <string name="noteName3">Заметка 3</string>
+    <string name="noteDate1">12.24.2033</string>
+    <string name="noteData2">14.14.2088</string>
+    <string name="noteData3">13.12.2077</string>
 </resources>
