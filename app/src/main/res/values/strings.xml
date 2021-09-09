@@ -10,4 +10,22 @@
     <string name="noteDate1">12.24.2033</string>
     <string name="noteData2">14.14.2088</string>
     <string name="noteData3">13.12.2077</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="Drawer">Drawer</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="Options1">Options 1</string>
+    <string name="Options2">Options 2</string>
+    <string name="string1">Ваше фото</string>
+    <string name="options1">Настройка 1</string>
 </resources>
