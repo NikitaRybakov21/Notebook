@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">Notebook</string>
     <string name="Note_1">Заметка 1</string>
-    <string name="note1">Hello World</string>
-    <string name="note2">Gde pokakat ?</string>
-    <string name="note3">Gde bigmak ?</string>
+    <string name="note1">Чика́го (англ. Chicago, американское произношение: официально Город Чикаго (англ. City of Chicago) — самый населённый город штата Иллинойс и третий по населению город в Соединённых Штатах.</string>
+    <string name="note2">Hello World</string>
+    <string name="note3">Hello World</string>
+    <string name="note4">Hello World</string>
     <string name="noteName1">Заметка 1</string>
     <string name="noteName2">Заметка 2</string>
     <string name="noteName3">Заметка 3</string>
-    <string name="noteDate1">12.24.2033</string>
-    <string name="noteData2">14.14.2088</string>
-    <string name="noteData3">13.12.2077</string>
+    <string name="noteName4">Заметка 4</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,11 +20,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="Drawer">Drawer</string>
+    <string name="Drawer">Notes</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="Options1">Options 1</string>
     <string name="Options2">Options 2</string>
     <string name="string1">Ваше фото</string>
     <string name="options1">Настройка 1</string>
+    <string name="head">Заголовок</string>
 </resources>

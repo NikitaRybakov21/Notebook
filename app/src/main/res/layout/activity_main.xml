@@ -5,12 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".NavigationDrawerActivity">
+    android:fitsSystemWindows="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,19 +27,17 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="490dp"
                 tools:context=".ui.MainActivity" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerViewDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/teal_200"
+                android:background="#ADA9B5"
                 tools:context=".ui.MainActivity" />
 
         </LinearLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -54,7 +47,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/menu" />
-
 </androidx.drawerlayout.widget.DrawerLayout>
 
 
