@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="false" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,21 +21,23 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:title="@string/Drawer" />
+                    app:title="@string/Drawer"
+                    app:menu="@menu/menu2"/>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="490dp"
-                tools:context=".ui.MainActivity" />
+                tools:context=".ui.Activity.MainActivity" >
+            </androidx.fragment.app.FragmentContainerView>
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragmentContainerViewDetail"
+                android:id="@+id/ContainerDetail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#ADA9B5"
-                tools:context=".ui.MainActivity" />
+                tools:context=".ui.Activity.MainActivity" />
 
         </LinearLayout>
 
@@ -47,6 +49,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"
         app:menu="@menu/menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
 
 

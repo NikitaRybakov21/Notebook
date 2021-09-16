@@ -3,19 +3,26 @@ package com.example.notebook.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class Note implements Parcelable {
-    private final int Note;
+
+    private String Note;
     private final int nameNote;
     private final String  dateNote;
 
-    public Note(int note, int nameNote, String dateNote) {
+    public Note(String note, int nameNote, String dateNote) {
         this.Note = note;
         this.nameNote = nameNote;
         this.dateNote = dateNote;
     }
 
+    public void setNote(String note) {
+        this.Note = note;
+    }
+
     protected Note(Parcel in) {
-        Note = in.readInt();
+        Note = in.readString();
         nameNote = in.readInt();
         dateNote = in.readString();
     }
@@ -32,7 +39,7 @@ public class Note implements Parcelable {
         }
     };
 
-    public int getNote() {
+    public String getNote() {
         return Note;
     }
 
@@ -51,8 +58,21 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(Note);
+        parcel.writeString(Note);
         parcel.writeInt(nameNote);
         parcel.writeString(dateNote);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return nameNote == note.nameNote && Objects.equals(Note, note.Note) && Objects.equals(dateNote, note.dateNote);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Note, nameNote, dateNote);
     }
 }

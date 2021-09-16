@@ -23,9 +23,22 @@
     <string name="Drawer">Notes</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    <string name="Options1">Options 1</string>
-    <string name="Options2">Options 2</string>
+    <string name="Options1">Просмотр</string>
+    <string name="Options2">Редактирование</string>
     <string name="string1">Ваше фото</string>
-    <string name="options1">Настройка 1</string>
+    <string name="options1">Режим редактирования</string>
     <string name="head">Заголовок</string>
+    <string name="editor">Editor</string>
+    <string name="text">Text</string>
+    <string name="options2">Режим просмотра</string>
+    <string name="apply">apply</string>
+    <string name="add">add</string>
+    <string name="deleteall">DeleteAll</string>
+    <string name="deleteAll">DeleteAll</string>
+    <string name="addnotes">AddNotes</string>
+    <string name="addNotes">AddNotes</string>
+    <string name="newNote">Новая заметка</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+
 </resources>

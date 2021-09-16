@@ -1,6 +1,5 @@
-package com.example.notebook.ui;
+package com.example.notebook.ui.Fragments;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,13 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     private final ArrayList<Note> data = new ArrayList<>();
     private final NotesFragment notesFragment;
 
-    public NotesAdapter(NotesFragment notesFragment){
+    public NotesAdapter(NotesFragment notesFragment) {
         this.notesFragment = notesFragment;
+    }
+
+    public void addNote(Note note) {
+        data.add(note);
+        notifyItemInserted(data.size() - 1);
     }
 
     public void setNotes(List<Note> toSet) {
@@ -39,7 +43,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     @NonNull
     @Override
     public NotesAdapter.NotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View viewNotes = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list,parent,false);
+        View viewNotes = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list, parent, false);
 
         return new NotesViewHolder(viewNotes);
     }
@@ -48,11 +52,25 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void onBindViewHolder(@NonNull NotesAdapter.NotesViewHolder holder, int position) {
         Note note = data.get(position);
 
+        notesFragment.registerForContextMenu(holder.v);
+        holder.v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.v.showContextMenu();
+
+                if (notesFragment.getLongNoteClick() != null) {
+                    notesFragment.getLongNoteClick().longNoteClicked(note);
+                }
+                return true;
+            }
+        });
+
+
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(notesFragment.getNoteClick() != null) {
-                    notesFragment.getNoteClick() .noteClicked(note);
+                if (notesFragment.getNoteClick() != null) {
+                    notesFragment.getNoteClick().noteClicked(note);
                 }
             }
         });
@@ -66,7 +84,17 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return data.size();
     }
 
-    static class NotesViewHolder extends RecyclerView.ViewHolder {
+    public int removeNotes(Note selectedNote) {
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).equals(selectedNote)) {
+                data.remove(i);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textView;
         private final ImageView imageView;

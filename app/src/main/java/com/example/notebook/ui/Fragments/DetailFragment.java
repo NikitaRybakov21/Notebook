@@ -1,4 +1,4 @@
-package com.example.notebook.ui;
+package com.example.notebook.ui.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,6 +39,8 @@ public class DetailFragment extends Fragment {
         Note note = getArguments().getParcelable(KEY);
 
         TextView textView = view.findViewById(R.id.note);
+        TextView textViewHead = view.findViewById(R.id.noteHead);
         textView.setText(note.getNote());
+        textViewHead.setText((note.getNameNote()));
     }
 }
