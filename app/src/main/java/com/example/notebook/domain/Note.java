@@ -6,9 +6,9 @@ import android.os.Parcelable;
 public class Note implements Parcelable {
     private final int Note;
     private final int nameNote;
-    private final int dateNote;
+    private final String  dateNote;
 
-    public Note(int note, int nameNote, int dateNote) {
+    public Note(int note, int nameNote, String dateNote) {
         this.Note = note;
         this.nameNote = nameNote;
         this.dateNote = dateNote;
@@ -17,7 +17,7 @@ public class Note implements Parcelable {
     protected Note(Parcel in) {
         Note = in.readInt();
         nameNote = in.readInt();
-        dateNote = in.readInt();
+        dateNote = in.readString();
     }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
@@ -40,8 +40,8 @@ public class Note implements Parcelable {
         return nameNote;
     }
 
-    public int getDateNote() {
-        return dateNote;
+    public String getDateNote() {
+        return this.dateNote;
     }
 
     @Override
@@ -53,6 +53,6 @@ public class Note implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(Note);
         parcel.writeInt(nameNote);
-        parcel.writeInt(dateNote);
+        parcel.writeString(dateNote);
     }
 }
