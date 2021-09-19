@@ -2,5 +2,9 @@ package com.example.notebook.domain;
 import java.util.List;
 
 public interface NoteRepository {
-    List<Note> getNote();
+    void getNote(Callback<List<Note>> callback);
+
+    void addNote(String title,String image, Callback<Note> callback);
+
+    void removeNote(Note note, Callback<Void> callback);
 }
