@@ -13,15 +13,15 @@ import java.util.UUID;
 public class DeviceRepository implements Parcelable , NoteRepository {
 
     private ArrayList<Note> notesList = new ArrayList<>();
-    private Handler handler = new Handler(Looper.getMainLooper());
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
     public DeviceRepository(){
         String text1 = "null";
 
-        notesList.add(new Note(text1,R.string.noteName1,"https://look.com.ua/pic/201508/1280x1024/look.com.ua-127118.jpg"));
-        notesList.add(new Note(text1,R.string.noteName2,"https://lookw.ru/9/945/1566941301-oboi-008.jpg"));
-        notesList.add(new Note(text1,R.string.noteName3,"https://3mins.es/wp-content/uploads/2021/05/spacex-starship-scaled-1.jpg"));
-        notesList.add(new Note(text1,R.string.noteName4,"https://cdn.fishki.net/upload/post/2018/02/22/2519736/filin-sova-ptitsa-khishchnik-krylya-vzmakh-111969-1680x1050.jpg"));
+        notesList.add(new Note(text1,text1,"https://look.com.ua/pic/201508/1280x1024/look.com.ua-127118.jpg",""));
+        notesList.add(new Note(text1,text1,"https://lookw.ru/9/945/1566941301-oboi-008.jpg",""));
+        notesList.add(new Note(text1,text1,"https://3mins.es/wp-content/uploads/2021/05/spacex-starship-scaled-1.jpg",""));
+        notesList.add(new Note(text1,text1,"https://cdn.fishki.net/upload/post/2018/02/22/2519736/filin-sova-ptitsa-khishchnik-krylya-vzmakh-111969-1680x1050.jpg",""));
     }
     @Override
     public void getNote(Callback<List<Note>> callback)  {
@@ -58,7 +58,7 @@ public class DeviceRepository implements Parcelable , NoteRepository {
                     e.printStackTrace();
                 }
 
-                Note result = new Note(UUID.randomUUID().toString(),R.string.newNote,image);
+                Note result = new Note(UUID.randomUUID().toString(),"null",image,"");
                 notesList.add(result);
 
                 handler.post(new Runnable() {

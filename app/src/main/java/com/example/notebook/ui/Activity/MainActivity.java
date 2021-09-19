@@ -14,10 +14,15 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.notebook.R;
 import com.example.notebook.domain.DeviceRepository;
+import com.example.notebook.domain.FireStore;
 import com.example.notebook.domain.Note;
+import com.example.notebook.domain.NoteRepository;
 import com.example.notebook.ui.Fragments.DetailFragment;
+import com.example.notebook.ui.Fragments.FragmentAccount;
 import com.example.notebook.ui.Fragments.FragmentEditor;
 import com.example.notebook.ui.Fragments.NotesFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Collections;
@@ -26,7 +31,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity implements NotesFragment.NoteClick {
 
     private final FragmentManager fragmentManager = getSupportFragmentManager();
-    private final DeviceRepository repository = new DeviceRepository();
+    private final NoteRepository repository = new FireStore();
     private final FragmentEditor fragmentEditor = new FragmentEditor();
     private final NotesFragment notesFragment = NotesFragment.newInstance(repository);
 
@@ -38,7 +43,12 @@ public class MainActivity extends AppCompatActivity implements NotesFragment.Not
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        replaceFragment(R.id.container, notesFragment);
+        if(GoogleSignIn.getLastSignedInAccount(this) == null){
+            replaceFragment(R.id.container, new FragmentAccount());
+        } else {
+            replaceFragment(R.id.container, notesFragment);
+        }
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -83,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NotesFragment.Not
 
     public void permutation1() {
         replaceFragment(R.id.container, notesFragment);
-        replaceFragment(R.id.ContainerDetail, DetailFragment.newInstance(new Note("", R.string.noteName1, null)));
+        replaceFragment(R.id.ContainerDetail, DetailFragment.newInstance(new Note("", "", null,"")));
     }
 
     public void navigationView() {
