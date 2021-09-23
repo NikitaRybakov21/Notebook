@@ -23,6 +23,7 @@ import com.example.notebook.R;
 import com.example.notebook.domain.Callback;
 import com.example.notebook.domain.DeviceRepository;
 import com.example.notebook.domain.Note;
+import com.example.notebook.domain.NoteRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,15 +32,16 @@ import kotlin.jvm.functions.FunctionN;
 
 public class NotesFragment extends Fragment  {
 
-    private final static String KEY = "KEY";
     private final NotesAdapter notesAdapter = new NotesAdapter(this);
-    private DeviceRepository repository;
+    private NoteRepository repository;
     private NoteClick noteClick;
+
     private LongNoteClick longNoteClick;
+    private final static String KEY = "KEY";
     private RecyclerView recyclerView;
     private Note selectedNote;
 
-    public static NotesFragment newInstance(DeviceRepository repository){
+    public static NotesFragment newInstance(NoteRepository repository){
         NotesFragment notesFragment = new NotesFragment();
 
         Bundle arguments = new Bundle();
@@ -49,14 +51,6 @@ public class NotesFragment extends Fragment  {
         return notesFragment;
     }
 
-    public interface NoteClick{
-        void noteClicked(Note note);
-    }
-
-    public interface LongNoteClick{
-        void longNoteClicked(Note note);
-    }
-
     public NoteClick getNoteClick(){
         return this.noteClick;
     }
@@ -64,6 +58,12 @@ public class NotesFragment extends Fragment  {
         return this.longNoteClick;
     }
 
+    public interface NoteClick{
+        void noteClicked(Note note);
+    }
+    public interface LongNoteClick{
+        void longNoteClicked(Note note);
+    }
     public void setLongNoteClick(LongNoteClick longNoteClick) {
         this.longNoteClick = longNoteClick;
     }
@@ -76,7 +76,6 @@ public class NotesFragment extends Fragment  {
             noteClick = (NoteClick) context;
         }
     }
-
     @Override
     public void onDetach() {
         noteClick = null;
@@ -118,26 +117,6 @@ public class NotesFragment extends Fragment  {
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void setNotes(List<Note> notes) {
-        notesAdapter.setNotes(notes);
-        notesAdapter.notifyDataSetChanged();
-    }
-
-    public void addNote(String title,String imageUrl){
-        repository.addNote(title, imageUrl, new Callback<Note>() {
-            @Override
-            public void onSuccess(Note data) {
-                onNoteAdded(data);
-            }
-        });
-    }
-
-    public void onNoteAdded(Note note){
-        notesAdapter.addNote(note);
-        recyclerView.smoothScrollToPosition(notesAdapter.getItemCount() - 1);
-    }
-
     @Override
     public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -161,6 +140,26 @@ public class NotesFragment extends Fragment  {
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setNotes(List<Note> notes) {
+        notesAdapter.setNotes(notes);
+        notesAdapter.notifyDataSetChanged();
+    }
+
+    public void addNote(String title,String imageUrl){
+        repository.addNote(title, imageUrl, new Callback<Note>() {
+            @Override
+            public void onSuccess(Note data) {
+                onNoteAdded(data);
+            }
+        });
+    }
+
+    public void onNoteAdded(Note note){
+        notesAdapter.addNote(note);
+        recyclerView.smoothScrollToPosition(notesAdapter.getItemCount() - 1);
     }
 
     public void onNoteRemoved(Note selectedNote){

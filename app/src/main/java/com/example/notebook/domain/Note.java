@@ -7,14 +7,20 @@ import java.util.Objects;
 
 public class Note implements Parcelable {
 
+    private String id;
     private String Note;
-    private final int nameNote;
+    private final String nameNote;
     private final String  dateNote;
 
-    public Note(String note, int nameNote, String dateNote) {
+    public Note(String note, String nameNote, String dateNote,String id) {
         this.Note = note;
         this.nameNote = nameNote;
         this.dateNote = dateNote;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setNote(String note) {
@@ -23,7 +29,7 @@ public class Note implements Parcelable {
 
     protected Note(Parcel in) {
         Note = in.readString();
-        nameNote = in.readInt();
+        nameNote = in.readString();
         dateNote = in.readString();
     }
 
@@ -43,7 +49,7 @@ public class Note implements Parcelable {
         return Note;
     }
 
-    public int getNameNote() {
+    public String getNameNote() {
         return nameNote;
     }
 
@@ -59,7 +65,7 @@ public class Note implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(Note);
-        parcel.writeInt(nameNote);
+        parcel.writeString(nameNote);
         parcel.writeString(dateNote);
     }
 

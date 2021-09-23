@@ -40,5 +40,6 @@
     <string name="newNote">Новая заметка</string>
     <string name="delete">Delete</string>
     <string name="update">Update</string>
+    <string name="Account">Account</string>
 
 </resources>
