@@ -49,5 +49,8 @@
     <string name="otes">Заметка</string>
     <string name="notes">Заметка</string>
     <string name="o">O приложении</string>
+    <string name="title">Вы точно хотите удалить заметку.</string>
+    <string name="positive">Да</string>
+    <string name="negative">Нет</string>
 
 </resources>
