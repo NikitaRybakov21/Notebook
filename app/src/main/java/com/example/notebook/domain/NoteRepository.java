@@ -7,7 +7,7 @@ public interface NoteRepository extends Parcelable {
 
     void getNote(Callback<List<Note>> callback);
 
-    void addNote(String title,String image, Callback<Note> callback);
+    void addNote(String title,String image,String notes, Callback<Note> callback);
 
     void removeNote(Note note, Callback<Void> callback);
 }

@@ -7,6 +7,6 @@
 
     <item
         android:id="@+id/optionsContextUpdate"
-        android:title="@string/update" />
+        android:title="@string/edit" />
 
 </menu>

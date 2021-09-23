@@ -13,58 +13,35 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.notebook.R;
-import com.example.notebook.domain.DeviceRepository;
 import com.example.notebook.domain.FireStore;
 import com.example.notebook.domain.Note;
 import com.example.notebook.domain.NoteRepository;
 import com.example.notebook.ui.Fragments.DetailFragment;
 import com.example.notebook.ui.Fragments.FragmentAccount;
-import com.example.notebook.ui.Fragments.FragmentEditor;
+import com.example.notebook.ui.Fragments.FragmentAdd;
 import com.example.notebook.ui.Fragments.NotesFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.Collections;
-import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements NotesFragment.NoteClick {
 
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
     private final NoteRepository repository = new FireStore();
-    private final FragmentEditor fragmentEditor = new FragmentEditor();
     private final NotesFragment notesFragment = NotesFragment.newInstance(repository);
 
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
     private DrawerLayout drawerLayout;
-    private boolean flag = false;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(GoogleSignIn.getLastSignedInAccount(this) == null){
-            replaceFragment(R.id.container, new FragmentAccount());
-        } else {
-            replaceFragment(R.id.container, notesFragment);
-        }
-
+        replaceFragment(R.id.container, notesFragment);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.deleteNotes) {
-                    notesFragment.setNotes(Collections.emptyList());
-                }
-                if (item.getItemId() == R.id.addNotes) {
-                    notesFragment.addNote(UUID.randomUUID().toString(), "https://look.com.ua/pic/201508/1280x1024/look.com.ua-127118.jpg");
-                }
-                return false;
-            }
-        });
+        toolbarMenu();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -75,20 +52,15 @@ public class MainActivity extends AppCompatActivity implements NotesFragment.Not
 
     @Override
     public void noteClicked(Note note) {
-        if (!flag) {
-            replaceFragment(R.id.ContainerDetail, DetailFragment.newInstance(note));
-        } else {
-            fragmentEditor.setTextEdit(note);
-        }
+        replaceFragment(R.id.ContainerDetail, DetailFragment.newInstance(note));
     }
 
-    public void replaceFragment(int idContainer, Fragment fragment) {
+    private void replaceFragment(int idContainer, Fragment fragment) {
         fragmentManager.beginTransaction().replace(idContainer, fragment, null).commit();
     }
 
-    public void permutation2() {
-        replaceFragment(R.id.container, fragmentEditor);
-        replaceFragment(R.id.ContainerDetail, NotesFragment.newInstance(repository));
+    private void setFragmentAdd(){
+        fragmentManager.beginTransaction().add( R.id.container,new FragmentAdd(notesFragment,this), null).commit();
     }
 
     public void permutation1() {
@@ -96,22 +68,32 @@ public class MainActivity extends AppCompatActivity implements NotesFragment.Not
         replaceFragment(R.id.ContainerDetail, DetailFragment.newInstance(new Note("", "", null,"")));
     }
 
-    public void navigationView() {
+    private void toolbarMenu(){
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.addNotes) {
+                    setFragmentAdd();
+                }
+                return false;
+            }
+        });
+    }
+
+    private void navigationView() {
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.options1) {
-                    flag = false;
                     permutation1();
 
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;
                 }
-
-                if (item.getItemId() == R.id.options2) {
-                    flag = true;
-                    permutation2();
+                if (item.getItemId() == R.id.options3) {
+                    replaceFragment(R.id.container, new FragmentAccount());
 
                     drawerLayout.closeDrawer(GravityCompat.START);
                     return true;

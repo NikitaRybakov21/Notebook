@@ -41,5 +41,13 @@
     <string name="delete">Delete</string>
     <string name="update">Update</string>
     <string name="Account">Account</string>
+    <string name="Вход">in</string>
+    <string name="in">Вход</string>
+    <string name="edit">Edit</string>
+    <string name="CreateNotes">Создание заметки</string>
+    <string name="notesName">Название заметки</string>
+    <string name="otes">Заметка</string>
+    <string name="notes">Заметка</string>
+    <string name="o">O приложении</string>
 
 </resources>

@@ -2,13 +2,10 @@ package com.example.notebook.domain;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.example.notebook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -51,22 +48,22 @@ public class FireStore implements NoteRepository{
     }
 
     @Override
-    public void addNote(String title, String image, Callback<Note> callback) {
+    public void addNote(String title, String image, String notes, Callback<Note> callback) {
         Map<String, Object> data = new HashMap<>();
         data.put("Name", title);
         data.put("ImNotes", image);
-        data.put("Notes", "текст");
+        data.put("Notes", notes);
 
 
         db.collection("notes")
                 .add(data)
-                .addOnCompleteListener(new OnCompleteListener<DocumentReference>(){
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if(task.isSuccessful()){
                             String noteId = task.getResult().getId();
 
-                            callback.onSuccess(new Note("текст1",title,image,noteId));
+                            callback.onSuccess(new Note(notes, title, image, noteId));
                         }
                     }
                 });
