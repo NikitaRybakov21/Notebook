@@ -9,26 +9,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.notebook.R;
 import com.example.notebook.domain.Callback;
-import com.example.notebook.domain.DeviceRepository;
 import com.example.notebook.domain.Note;
 import com.example.notebook.domain.NoteRepository;
 
-import java.util.Collections;
 import java.util.List;
-
-import kotlin.jvm.functions.FunctionN;
 
 public class NotesFragment extends Fragment  {
 
@@ -148,8 +142,8 @@ public class NotesFragment extends Fragment  {
         notesAdapter.notifyDataSetChanged();
     }
 
-    public void addNote(String title,String imageUrl){
-        repository.addNote(title, imageUrl, new Callback<Note>() {
+    public void addNote(String title,String notes,String imageUrl){
+        repository.addNote(title, imageUrl,notes, new Callback<Note>() {
             @Override
             public void onSuccess(Note data) {
                 onNoteAdded(data);

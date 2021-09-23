@@ -29,7 +29,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="490dp"
-                tools:context=".ui.Activity.MainActivity" >
+                tools:context=".ui.Activity.MainActivity">
             </androidx.fragment.app.FragmentContainerView>
 
             <androidx.fragment.app.FragmentContainerView
@@ -48,6 +48,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/header_layout"
+        android:background="#BFBFC3"
         app:menu="@menu/menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

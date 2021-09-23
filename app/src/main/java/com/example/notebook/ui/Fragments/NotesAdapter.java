@@ -94,7 +94,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         return -1;
     }
 
-    class NotesViewHolder extends RecyclerView.ViewHolder {
+    static class NotesViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView textView;
         private final ImageView imageView;

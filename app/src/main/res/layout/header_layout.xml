@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#817593">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:src="@drawable/i" />
+        android:src="@drawable/notes" />
     <View
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="#888888"
-        android:layout_margin="16dp"/>
+        android:layout_height="2dp"
+        android:background="#3E3E3E"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>

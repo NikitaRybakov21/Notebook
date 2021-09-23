@@ -8,7 +8,12 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/options2"
-        android:title="@string/Options2"
+        android:id="@+id/options3"
+        android:title="@string/in"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/optionsO"
+        android:title="@string/o"
         app:showAsAction="ifRoom" />
 </menu>
