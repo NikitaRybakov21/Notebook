@@ -113,6 +113,7 @@ public class NotesFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.optionsContextDelete) {
 
+
             alertDialog();
 
             return true;
@@ -121,6 +122,7 @@ public class NotesFragment extends Fragment {
     }
 
     private void alertDialog() {
+
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.title)
